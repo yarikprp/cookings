@@ -31,10 +31,17 @@ namespace kulinaria_app_v2.Model
                 {
                     while (await reader.ReadAsync())
                     {
-                        dishes.Add(new Dish(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader[5].ToString()));
+                        int sum = 0;
+                        List<DishStructure> dishStructures = await DishStructureFromDb((int)reader[0]);
+                        foreach (DishStructure structure in dishStructures)
+                        {
+                            sum += structure.Weight;
+                        }
+                        dishes.Add(new Dish(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), sum, reader[5].ToString()));
                     }
                     await reader.CloseAsync();
                 }
+
             }
             catch (NpgsqlException ex)
             {

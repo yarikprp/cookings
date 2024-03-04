@@ -164,6 +164,7 @@
             this.dataGridViewDishes.Size = new System.Drawing.Size(857, 438);
             this.dataGridViewDishes.TabIndex = 16;
             this.dataGridViewDishes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDishes_CellDoubleClick);
+            this.dataGridViewDishes.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DataGridViewDishes_CellFormatting);
             // 
             // comboBoxTypeOfDish
             // 

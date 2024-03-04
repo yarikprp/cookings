@@ -310,23 +310,24 @@ namespace kulinaria_app_v2.Forms
             }
         }
 
-        private void dataGridViewDishes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void DataGridViewDishes_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == dataGridViewDishes.Columns["Exit"].Index)
             {
-                int weight;
-                if (int.TryParse(dataGridViewDishes.Rows[e.RowIndex].Cells["Exit"].Value.ToString(), out weight))
+                var cell = dataGridViewDishes.Rows[e.RowIndex].Cells["Exit"];
+                if (cell.Value != null && int.TryParse(cell.Value.ToString(), out int weight))
                 {
-                    if (weight >= 200)
+                    if (weight > 200)
                     {
                         dataGridViewDishes.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightCoral;
                     }
                     else
                     {
-                        e.CellStyle.BackColor = Color.White; 
+                        e.CellStyle.BackColor = Color.White;
                     }
                 }
             }
         }
+
     }
 }
